@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ревюта за продукт {% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+    color: orange;
+}
+</style>
+<a href="/">Go Back</a>
+
+<p>
+    <a href="/product/{{product.id}}/reviews/new" class=" dark">Добави оценка</a>
+</p>
+<center><h1><small>ревю на продукт</small> {{ product.title }} </h1></center>
+<br>
+<br>
+
+
+{% if reviews %}
+
+   {% for reviews in reviews %}
+
+      {% if reviews.approved == 1 %}
+
+      <h3><small>Добавено ОТ:</small> {{ reviews.name }} </h3> <p><small>дата:{{ reviews.date_added}}</small></p>
+      {% set rating = reviews.rating %}
+      <p>{{ reviews.description}}</p>
+    
+      <!-- DISPLAY RATING OF THE PRODUCT REVIEW-->
+      {% for i in range(0, rating) %}
+      <span class="fa fa-star checked"></span>
+      {% endfor %}
+
+      <!-- ITS HARDCORE FOR NOW , BUT WILL LOOP IT FOR THE LENGHT OF THE ARRAY REVIEWS.RATING-->
+      {% endif %}
+
+      <hr>
+
+    {% endfor %}
+  {% else %}
+
+    <h1> There are no reviews for this product </h1>
+
+  {% endif %}
+
+
+{% endblock %}

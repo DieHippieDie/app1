@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<a href="/product/{{product.id}}/reviews/">Go Back</a>
+
+</p>
+<center><h1><small>Добавяне на оценка за продукт:</small> {{ product.title }} </h1></center>
+<br>
+<br>
+
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+  <script src="/js/main.js"></script>
+  <script>
+    $(document).ready(function() {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    });
+</script>
+{% endblock %}
